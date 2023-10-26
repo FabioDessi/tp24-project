@@ -34,19 +34,30 @@ const Table = <DataType extends { [K in keyof DataType]: unknown }>({
 
   return (
     <div>
-      <table className="min-w-full bg-white">
-        <thead>
+      <table className="min-w-full bg-white border-collapse">
+        <thead className="bg-gray-200">
           <tr>
             {columns.map((column) => (
-              <th key={column.id as string}>{column.label}</th>
+              <th
+                key={column.id as string}
+                className="py-2 px-3 border border-gray-300"
+              >
+                {column.label}
+              </th>
             ))}
           </tr>
         </thead>
         <tbody>
           {paginatedData.map((row, rowIndex) => (
-            <tr key={rowIndex}>
+            <tr
+              key={rowIndex}
+              className={rowIndex % 2 === 0 ? 'bg-gray-50' : ''}
+            >
               {columns.map((column) => (
-                <td key={column.id as string}>
+                <td
+                  key={column.id as string}
+                  className="py-1 px-3 border border-gray-300"
+                >
                   {column.render
                     ? column.render(row)
                     : (row[column.id] as string)}

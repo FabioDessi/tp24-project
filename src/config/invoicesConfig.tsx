@@ -1,4 +1,5 @@
-import { Column } from './components/Table';
+import { Column } from '../components/Table';
+import { formatDateTime } from '../utils/formatDateTime';
 
 export interface Invoices {
   Id: number;
@@ -28,6 +29,7 @@ export const invoiceColumns: Column<Invoices>[] = [
   {
     id: 'IssueDate',
     label: 'Issue Date',
+    render: (row) => <span>{formatDateTime(row.IssueDate)}</span>,
   },
   {
     id: 'OpeningValue',
@@ -40,10 +42,12 @@ export const invoiceColumns: Column<Invoices>[] = [
   {
     id: 'DueDate',
     label: 'Due Date',
+    render: (row) => <span>{formatDateTime(row.DueDate)}</span>,
   },
   {
     id: 'ClosedDate',
     label: 'Closed Date',
+    render: (row) => <span>{formatDateTime(row.ClosedDate)}</span>,
   },
   {
     id: 'Cancelled',

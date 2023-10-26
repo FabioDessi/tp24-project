@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Table from './components/Table';
-import type { Invoices } from './invoicesConfig';
-import { invoiceColumns } from './invoicesConfig';
+import { invoiceColumns } from './config/invoicesConfig';
+
+import type { Invoices } from './config/invoicesConfig';
 
 const App: React.FC = () => {
   const [invoices, setInvoices] = useState<Invoices[]>([]);
@@ -12,6 +13,7 @@ const App: React.FC = () => {
     const fetchInvoices = async () => {
       try {
         setLoading(true);
+        // TODO: replace CORS everywhere
         const response = await fetch(
           'https://cors-anywhere.herokuapp.com/https://tech-test.tp24.io/invoices.json'
         );

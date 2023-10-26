@@ -20,11 +20,14 @@ const Pagination: React.FC<PaginationProps> = ({
   return (
     <div className="flex justify-between items-center mt-4">
       <div>
-        <label htmlFor="rowsPerPage">Rows per page:</label>
+        <label htmlFor="rowsPerPage" className="mr-2">
+          Rows per page:
+        </label>
         <select
           id="rowsPerPage"
           value={rowsPerPage}
           onChange={(e) => setRowsPerPage(Number(e.target.value))}
+          className="border rounded-md p-1"
         >
           {rowsPerPageOptions.map((option) => (
             <option key={option} value={option}>
@@ -37,15 +40,17 @@ const Pagination: React.FC<PaginationProps> = ({
         <button
           disabled={currentPage === 1}
           onClick={() => setCurrentPage((prev) => prev - 1)}
+          className="bg-gray-200 text-gray-700 px-3 py-1 rounded-lg mr-2 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Previous
         </button>
-        <span>
+        <span className="mx-2">
           {currentPage} of {totalPages}
         </span>
         <button
           disabled={currentPage === totalPages}
           onClick={() => setCurrentPage((prev) => prev + 1)}
+          className="bg-gray-200 text-gray-700 px-3 py-1 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
         >
           Next
         </button>
