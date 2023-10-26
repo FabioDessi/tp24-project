@@ -48,7 +48,7 @@ npm install # or yarn install
 Start the development server:
 
 ``` bash
-npm dev # or yarn run dev
+npm run dev # or yarn run dev
 ```
 
 Visit [http://localhost:5173](http://localhost:5173) (or the port displayed in your terminal) to view the application.
@@ -64,7 +64,7 @@ npm run test:dev # or yarn run test:dev
 Run the test suite with the following command:
 
 ``` bash
-npm test:coverage # or yarn run test:coverage
+npm run test:coverage # or yarn run test:coverage
 ```
 
 ## Linting
@@ -72,5 +72,5 @@ npm test:coverage # or yarn run test:coverage
 Check code quality and adherence to standards using:
 
 ``` bash
-npm lint # or yarn run lint
+npm run lint # or yarn run lint
 ```
