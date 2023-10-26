@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Table from './components/Table';
+import type { Invoices } from './invoicesConfig';
+import { invoiceColumns } from './invoicesConfig';
 
 const App: React.FC = () => {
-  const [invoices, setInvoices] = useState<any[]>([]);
+  const [invoices, setInvoices] = useState<Invoices[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     const fetchInvoices = async () => {
@@ -21,7 +23,7 @@ const App: React.FC = () => {
         const data = await response.json();
         setInvoices(data);
       } catch (error) {
-        setError(error);
+        setError(error as Error);
       } finally {
         setLoading(false);
       }
@@ -31,9 +33,9 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 flex flex-col justify-center">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-lg shadow p-6">
+    <div className="bg-gray-100 flex flex-col justify-center">
+      <div className="mx-auto px-4">
+        <div className="bg-white rounded-lg shadw p-6">
           <h1 className="text-2xl font-semibold mb-4">Invoice Data</h1>
 
           {loading ? (
@@ -48,7 +50,7 @@ const App: React.FC = () => {
             <div className="text-red-500 mt-5">{error.message}</div>
           ) : (
             <div className="mt-5">
-              <Table />
+              <Table<Invoices> data={invoices} columns={invoiceColumns} />
             </div>
           )}
         </div>
